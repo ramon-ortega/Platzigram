@@ -2,6 +2,7 @@
 
 #Django
 from django.http import HttpResponse, JsonResponse
+import json
 
 #Utilities
 from datetime import datetime
@@ -22,3 +23,23 @@ def numeros(request):
     number_list = sorted(numbers.split(','))
     print(number_list)
     return JsonResponse({"sorted numbers" : number_list})
+
+def sol_numeros(request):
+    """Esta es la solucion del profe al reto"""
+    numbers = [int(i) for i in request.GET['numbers'].split(',')]
+    sorted_numbers = sorted(numbers)
+    data = {
+        'status' : 'ok',
+        'sorted numbers' : sorted_numbers,
+        'message' : 'Integers sorted succesfuly'
+    }
+    return HttpResponse(json.dumps(data=4),
+     content_type="application/json")
+
+def say_hi(request, name, age):
+    """ Saluda a la persona y le menciona su nombre"""
+    if age < 18:
+        message = 'Ups {}, no puedes estar aqui'.format(name)
+    else:
+        message = 'Bienvenido a Platzigram {}'.format(name)
+    return HttpResponse(message)
