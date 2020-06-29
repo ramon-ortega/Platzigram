@@ -1,0 +1,41 @@
+from datetime import date
+
+users = [
+    {
+        'first_name' : 'Juan',
+        'last_name' : 'Acosta',
+        'email' : 'juanacos@gmail.com',
+        'password' : 'moxito123',
+        'is_admin' : True,
+        'birthdate' : date(1994,6,1),
+        'bio' : 'Joven Zacatecano apasionado por los coches'
+    },
+    {
+        'first_name' : 'Roque',
+        'last_name' : 'Ortega',
+        'email' : 'rorguz@gmail.com',
+        'password' : 'rorguz1',
+        'bio' : 'Cocinero por pasion'
+    },
+    {
+        'first_name' : 'Eduardo',
+        'last_name' : 'Mora',
+        'email' : 'producciones@mora.com',
+        'password' : 'turroncito78'
+    },
+    {
+        'first_name' : 'Juan Carlos',
+        'last_name' : 'Ortiz',
+        'email' : 'jcortiz@hotmail.com',
+        'password' : '12345',
+        'is_admin' : True,
+        'birthdate' : date(1994, 7, 2),
+        'bio' : 'Futbolista profesional, club actual: mineros'
+    }
+]
+
+from posts.models import User
+
+for user in users:
+    obj = User.objects.create(**user)
+    print(obj.pk)
